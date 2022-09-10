@@ -11,15 +11,24 @@ export const verifyToken = async (req, res, next) => {
   try {
     const decoded = jwt.verify(token, config.SECRET);
     req.userId = decoded.id;
-
-    const user = await User.findById(req.userId, { password: 0 });
-    if (!user) return res.status(404).json({ message: "No user found" });
-
+    if (!verifiUser(decoded.role)) return res.status(404).json({ message: "No user found" });
     next();
   } catch (error) {
     return res.status(401).json({ message: "Unauthorized!" });
   }
 };
+
+const verifiUser = function (param){
+  if (param ==='Admin') {
+    return true
+  } else if (param ==='Docente'){
+    return true
+  } else if (param ==='Estudiante') {
+    return true
+  } else {
+    return false;
+  }
+}
 
 export const isSecretario = async (req, res, next) => {
   try {

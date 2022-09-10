@@ -55,6 +55,8 @@ var _task = _interopRequireDefault(require("./routes/AulaVirtual/task.routes"));
 
 var _migracion = _interopRequireDefault(require("./routes/Migracion/migracion.routes"));
 
+var _quizz = _interopRequireDefault(require("./routes/AulaVirtual/quizz.routes"));
+
 var _index = _interopRequireDefault(require("./public/routes/index"));
 
 var _sitemap = _interopRequireDefault(require("./service/sitemap"));
@@ -73,15 +75,19 @@ var app = (0, _express.default)(); //createRoles();
 //userest();
 
 var corsOptions = {
-  origin: ['https://back-ends.web.app', 'https://plataformas-pcei.netlify.app', 'http://localhost:8080', 'https://plataformas-pcei.vercel.app/'],
+  origin: ['https://plataformas-pcei.netlify.app', 'http://localhost:8080', 'https://plataformas-pcei.vercel.app/'],
   // http://localhost:8080
   optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
 
 };
-app.use((0, _cors.default)(corsOptions)); //app.use(morgan("dev"));
-
-app.use(_express.default.json()); // Settings
-// settings
+app.use((0, _cors.default)(corsOptions));
+app.use((0, _morgan.default)("dev"));
+app.use(_express.default.json({
+  limit: '50mb'
+}));
+app.use(_express.default.urlencoded({
+  limit: '50mb'
+})); // settings
 
 app.set('views', path.join(__dirname, 'public/views'));
 app.set('view engine', 'ejs'); //app.use(express.static(__dirname+'/static'));
@@ -113,7 +119,8 @@ app.use("/api/distributivo", _distributivo.default);
 app.use("/api/notas", _notas.default);
 app.use("/api/aulas", _aulas.default);
 app.use("/api/tasks", _task.default);
-app.use("/api/migracion", _migracion.default); //migracion
+app.use("/api/migracion", _migracion.default);
+app.use("/api/quizz", _quizz.default); //migracion
 //sitemap
 
 app.use("/sitemap.xml", _sitemap.default);

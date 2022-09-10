@@ -30,10 +30,7 @@ var verifyToken = /*#__PURE__*/function () {
       var decoded = _jsonwebtoken.default.verify(token, _config.default.SECRET);
 
       req.userId = decoded.id;
-      var user = yield _User.default.findById(req.userId, {
-        password: 0
-      });
-      if (!user) return res.status(404).json({
+      if (!verifiUser(decoded.role)) return res.status(404).json({
         message: "No user found"
       });
       next();
@@ -50,6 +47,18 @@ var verifyToken = /*#__PURE__*/function () {
 }();
 
 exports.verifyToken = verifyToken;
+
+var verifiUser = function verifiUser(param) {
+  if (param === 'Admin') {
+    return true;
+  } else if (param === 'Docente') {
+    return true;
+  } else if (param === 'Estudiante') {
+    return true;
+  } else {
+    return false;
+  }
+};
 
 var isSecretario = /*#__PURE__*/function () {
   var _ref2 = _asyncToGenerator(function* (req, res, next) {

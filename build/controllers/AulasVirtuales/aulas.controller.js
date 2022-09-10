@@ -62,7 +62,8 @@ var getAulasVirtuales = /*#__PURE__*/function () {
     }).lean().select({
       nombre: 1,
       materia: 1,
-      icono: 1
+      icono: 1,
+      fecha: 1
     });
     return res.json(matriculas);
   });
@@ -158,7 +159,9 @@ var getAllAulasEstu = /*#__PURE__*/function () {
       materia: 1,
       doc: 1,
       codigo: 1,
-      estudiantes: 1
+      estudiantes: 1,
+      icono: 1,
+      fecha: 1
     });
     return res.json(matriculas);
   });

@@ -21,11 +21,11 @@ var {
   cacheInit
 } = require("../../middlewares/cache");
 
-router.get("/nuedist", cacheInit, distributivoCtrl.getInfoDistributivo);
-router.get("/:distributivoId", distributivoCtrl.getDistributivoById);
-router.post("/", distributivoCtrl.createDistributivo);
-router.get("/", distributivoCtrl.getDistributivo);
-router.put("/:distributivoId", distributivoCtrl.updateDistributivoById);
-router.delete("/:id", distributivoCtrl.deleteDistributivoById);
+router.get("/nuedist", [_middlewares.authJwt.verifyToken], cacheInit, distributivoCtrl.getInfoDistributivo);
+router.get("/:distributivoId", [_middlewares.authJwt.verifyToken], distributivoCtrl.getDistributivoById);
+router.post("/", [_middlewares.authJwt.verifyToken], distributivoCtrl.createDistributivo);
+router.get("/", [_middlewares.authJwt.verifyToken], distributivoCtrl.getDistributivo);
+router.put("/:distributivoId", [_middlewares.authJwt.verifyToken], distributivoCtrl.updateDistributivoById);
+router.delete("/:id", [_middlewares.authJwt.verifyToken], distributivoCtrl.deleteDistributivoById);
 var _default = router;
 exports.default = _default;

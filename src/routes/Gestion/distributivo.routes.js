@@ -6,18 +6,18 @@ const { cacheInit } = require("../../middlewares/cache")
 import * as distributivoCtrl from "../../controllers/Gestion/distributivo.controller";
 import { authJwt } from "../../middlewares";
 
-router.get("/nuedist", cacheInit, distributivoCtrl.getInfoDistributivo);
+router.get("/nuedist",[authJwt.verifyToken], cacheInit, distributivoCtrl.getInfoDistributivo);
 
-router.get("/:distributivoId", distributivoCtrl.getDistributivoById);
+router.get("/:distributivoId",[authJwt.verifyToken], distributivoCtrl.getDistributivoById);
 
-router.post("/", distributivoCtrl.createDistributivo);
+router.post("/",[authJwt.verifyToken], distributivoCtrl.createDistributivo);
 
-router.get("/", distributivoCtrl.getDistributivo);
+router.get("/",[authJwt.verifyToken], distributivoCtrl.getDistributivo);
 
 
 
-router.put("/:distributivoId", distributivoCtrl.updateDistributivoById);
+router.put("/:distributivoId",[authJwt.verifyToken], distributivoCtrl.updateDistributivoById);
 
-router.delete("/:id", distributivoCtrl.deleteDistributivoById);
+router.delete("/:id",[authJwt.verifyToken], distributivoCtrl.deleteDistributivoById);
 
 export default router;

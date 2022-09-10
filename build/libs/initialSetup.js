@@ -156,7 +156,7 @@ var userest = /*#__PURE__*/function () {
         fketnia: "Mestizo",
         fknacionalidad: "Colombia",
         fkparroquia: "Monte Olivo",
-        modalidad: "Intensivo"
+        modalidad: "Extraordinaria"
       });
     }
 

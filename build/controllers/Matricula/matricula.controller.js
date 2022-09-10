@@ -56,7 +56,7 @@ var createMatriculas = /*#__PURE__*/function () {
 
       if (docs) {
         var options = {
-          ordered: true
+          ordered: false
         };
         yield _Matriculas.default.insertMany(docs, options);
       }

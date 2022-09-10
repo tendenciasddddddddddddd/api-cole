@@ -259,7 +259,7 @@ var createEstudianteMany = /*#__PURE__*/function () {
 
       if (docs) {
         var options = {
-          ordered: true
+          ordered: false
         };
         yield _User.default.insertMany(docs, options);
       }
@@ -268,6 +268,7 @@ var createEstudianteMany = /*#__PURE__*/function () {
         duplicados
       });
     } catch (error) {
+      console.log(error);
       return res.status(500).json({
         message: 'Problem'
       });

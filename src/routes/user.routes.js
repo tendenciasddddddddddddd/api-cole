@@ -14,7 +14,7 @@ router.get("/:id", usuariosCtrl.getUsuariosById);
 
 router.get(
     "/", 
-    [authJwt.verifyToken  ,  authJwt.isAdmin],
+    [authJwt.verifyToken ],
     usuariosCtrl.getUsuarios
     );
 
