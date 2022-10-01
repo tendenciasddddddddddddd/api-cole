@@ -30,7 +30,8 @@ var cantonesSchema = new _mongoose.Schema({
     //periodo
     ref: "Academicos"
   },
-  paralelo: String
+  paralelo: String,
+  planificacion: String
 }, {
   timestamps: true,
   versionKey: false

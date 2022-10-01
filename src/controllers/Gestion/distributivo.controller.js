@@ -10,7 +10,8 @@ export const createDistributivo = async (req,res)=>{
           fdocente, 
           fmateria,
           facademicos,
-          paralelo
+          paralelo,
+          planificacion:''
         });
     
         const DistributivoSaved = await newMateria.save();
@@ -20,6 +21,40 @@ export const createDistributivo = async (req,res)=>{
         
         return res.status(500).json(error);
       }
+}
+
+//--------------------------------CREAR ESTUDIANTE--------------------
+export const createArrayDistributivo = async (req, res) => {
+  try {
+    const array = req.body;
+    console.log(array);
+    if (array.length !=0) {
+      const options = { ordered: false };
+      await Distributivo.insertMany(array, options);
+    }
+      return res.status(200).json({ 'docs': 'docs'});
+  } catch (error) {
+    console.log(error)
+     return res.status(500).json({ message:'Problem'});  
+  }
+};
+
+export const getPlanificacionById = async (req,res)=>{
+  const { distributivoId } = req.params;
+  const niveles = await Distributivo.findById(distributivoId);
+  res.status(200).json(niveles);
+    
+  }
+
+export const updatePlanificacionById = async (req,res)=>{
+  const updateddistributivo = await Distributivo.findByIdAndUpdate(
+      req.params.distributivoId,
+      req.body,
+      {
+        new: true,
+      }
+    );
+    res.status(200).json(updateddistributivo);
 }
 
 

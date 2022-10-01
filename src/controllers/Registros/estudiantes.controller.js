@@ -122,11 +122,12 @@ export const updateEstudianteById = async (req,res)=>{
 //--------------------------------CREAR ESTUDIANTE--------------------
 export const createEstudianteMany = async (req, res) => {
 
+  let roles = req.query.role;
   try {
     let array = req.body;
     const docs = [];
     const duplicados = []
-    const role = await Role.findOne({ name: "Estudiante"});
+    const role = await Role.findOne({ name: roles});
     for (let i = 0; i < array.length; i++) {
       const ifemail = await User.findOne({ email: array[i].email });
       const ifuser = await User.findOne({cedula: req.body.cedula });
@@ -146,7 +147,7 @@ export const createEstudianteMany = async (req, res) => {
          duplicados
       });
   } catch (error) {
-    console.log(error)
+    //console.log(error)
      return res.status(500).json({ message:'Problem'});  
   }
 };

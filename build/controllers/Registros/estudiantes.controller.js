@@ -232,12 +232,14 @@ exports.createEstudiante = createEstudiante;
 
 var createEstudianteMany = /*#__PURE__*/function () {
   var _ref8 = _asyncToGenerator(function* (req, res) {
+    var roles = req.query.role;
+
     try {
       var array = req.body;
       var docs = [];
       var duplicados = [];
       var role = yield _Role.default.findOne({
-        name: "Estudiante"
+        name: roles
       });
 
       for (var i = 0; i < array.length; i++) {
@@ -268,7 +270,7 @@ var createEstudianteMany = /*#__PURE__*/function () {
         duplicados
       });
     } catch (error) {
-      console.log(error);
+      //console.log(error)
       return res.status(500).json({
         message: 'Problem'
       });

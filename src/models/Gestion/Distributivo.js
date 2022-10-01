@@ -25,6 +25,7 @@ const cantonesSchema = new Schema({
         ref: "Academicos",
     },
     paralelo: String,
+    planificacion: String,
 }, {
     timestamps: true,
     versionKey: false

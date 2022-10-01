@@ -100,7 +100,7 @@ export const signin = async (req, res) => {
             id: userFound._id,
             role: toles,
         }, config.SECRET, {
-            expiresIn: '40d', // 24 hours
+            expiresIn: '2d', // 24 hours
         });
 
         if(!userFound.modalidad){
