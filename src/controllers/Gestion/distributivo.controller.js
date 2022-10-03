@@ -1,7 +1,7 @@
 import Distributivo from "../../models/Gestion/Distributivo";
 
 export const createDistributivo = async (req,res)=>{
-    const { nombre,fnivel,fdocente,icono, fmateria,facademicos,paralelo } = req.body;
+    const { nombre,fnivel,fdocente,icono, fmateria,paralelo } = req.body;
     try {
         const newMateria = new Distributivo({
           nombre,
@@ -9,7 +9,6 @@ export const createDistributivo = async (req,res)=>{
           fnivel,
           fdocente, 
           fmateria,
-          facademicos,
           paralelo,
           planificacion:''
         });

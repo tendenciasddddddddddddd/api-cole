@@ -23,6 +23,7 @@ router.get("/",[authJwt.verifyToken], matriCtrl.getMatriculas);
 router.post("/", [authJwt.verifyToken],
 matriCtrl.createMatriculas);
 
+router.get("/repo/:matriculaId",[authJwt.verifyToken], matriCtrl.getMatriculaByIdReport);
 
 router.put("/:matriculaId",[authJwt.verifyToken], matriCtrl.updateMatriculasById);
 

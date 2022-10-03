@@ -71,7 +71,7 @@ export const getReportes = async (req, res) => {
     },
   })
     .lean()
-    .select({ curso: 1, nombre: 1 });
+    .select({ curso: 1, nombre: 1, fecha: 1 });
 
   return res.json(matriculas);
 };
@@ -130,7 +130,7 @@ export const getListaMatricula = async (req, res) => {
     },
   })
     .lean()
-    .select({ curso: 1, nombre: 1 });
+    .select({ curso: 1, nombre: 1, fecha: 1});
   const coleccion = {
     matriculados: mat,
   };
@@ -217,4 +217,22 @@ export const getQueryAll = async (req, res) => {
     data: matriculas,
   };
   return res.json(coleccion);
+};
+
+export const getMatriculaByIdReport = async (req, res) => {
+  try {
+    let result = [];
+    let cadenaId = req.params? req.params.matriculaId: '1';
+    const array = cadenaId.split(",");
+    if (array != '') {
+      for (let i = 0; i < array.length; i++) {
+        const niveles = await Matriculas.findById(array[i]).populate("fknivel", "nombre").populate("academico", "nombre");
+        result.push(niveles);
+      }
+    }
+    res.status(200).json(result);
+  } catch (error) {
+    return res.status(500).json();
+  }
+
 };

@@ -20,10 +20,6 @@ const cantonesSchema = new Schema({
         type: Schema.Types.ObjectId,//materia
         ref: "Materia",
     },
-    facademicos: {
-        type: Schema.Types.ObjectId,//periodo
-        ref: "Academicos",
-    },
     paralelo: String,
     planificacion: String,
 }, {
